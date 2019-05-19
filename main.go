@@ -13,6 +13,9 @@ func main() {
 	todoHandler := handler.NewTodoHandler(todoUsecase)
 
 	r := gin.Default()
-	r.GET("/todos", todoHandler.GetAll)
+	r.GET("/todos", todoHandler.GetAllTodos)
+	r.POST("/todos", todoHandler.CreateTodo)
+	r.PATCH("/todos/:id", todoHandler.UpdateTodo)
+	r.DELETE("/todos/:id", todoHandler.DeleteTodo)
 	r.Run(":8080")
 }
