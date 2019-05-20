@@ -4,6 +4,7 @@ import (
 	"log"
 	"net/http"
 	"strconv"
+	"time"
 
 	"github.com/gin-gonic/gin"
 	"github.com/shharn/golang-clean-architecture/model"
@@ -26,7 +27,7 @@ type TodoHandler struct {
 func (h *TodoHandler) CreateTodo(c *gin.Context) {
 	var input createTodoInput
 	c.Bind(&input)
-	todo := model.Todo{Content: input.Content}
+	todo := model.Todo{Content: input.Content, CreatedAt: time.Now(), ModifiedAt: time.Now()}
 	err := h.tu.CreateTodo(todo)
 	if err != nil {
 		log.Printf("Error occured - %+v", err)
@@ -38,7 +39,7 @@ func (h *TodoHandler) CreateTodo(c *gin.Context) {
 func (h *TodoHandler) UpdateTodo(c *gin.Context) {
 	var input updateTodoInput
 	c.Bind(&input)
-	todo := model.Todo{Id: input.Id, Content: input.Content}
+	todo := model.Todo{Id: input.Id, Content: input.Content, ModifiedAt: time.Now()}
 	err := h.tu.UpdateTodo(todo)
 	if err != nil {
 		log.Printf("Error occured - %+v", err)

@@ -1,8 +1,14 @@
 package usecase
 
 import (
+	"errors"
+
 	"github.com/shharn/golang-clean-architecture/model"
 	"github.com/shharn/golang-clean-architecture/repository"
+)
+
+var (
+	InvalidIdError = errors.New("The Id should not be 0")
 )
 
 type TodoUsecase interface {
@@ -21,10 +27,16 @@ func (s *exampleTodoUsecase) CreateTodo(todo model.Todo) error {
 }
 
 func (s *exampleTodoUsecase) UpdateTodo(todo model.Todo) error {
+	if todo.Id < 1 {
+		return InvalidIdError
+	}
 	return s.tr.Update(todo)
 }
 
 func (s *exampleTodoUsecase) DeleteTodo(id int) error {
+	if id < 1 {
+		return InvalidIdError
+	}
 	return s.tr.Delete(id)
 }
 

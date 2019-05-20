@@ -10,6 +10,34 @@ type TodoRepository struct {
 	mock.Mock
 }
 
+// Create provides a mock function with given fields: _a0
+func (_m *TodoRepository) Create(_a0 model.Todo) error {
+	ret := _m.Called(_a0)
+
+	var r0 error
+	if rf, ok := ret.Get(0).(func(model.Todo) error); ok {
+		r0 = rf(_a0)
+	} else {
+		r0 = ret.Error(0)
+	}
+
+	return r0
+}
+
+// Delete provides a mock function with given fields: _a0
+func (_m *TodoRepository) Delete(_a0 int) error {
+	ret := _m.Called(_a0)
+
+	var r0 error
+	if rf, ok := ret.Get(0).(func(int) error); ok {
+		r0 = rf(_a0)
+	} else {
+		r0 = ret.Error(0)
+	}
+
+	return r0
+}
+
 // GetAll provides a mock function with given fields:
 func (_m *TodoRepository) GetAll() ([]model.Todo, error) {
 	ret := _m.Called()
@@ -31,4 +59,18 @@ func (_m *TodoRepository) GetAll() ([]model.Todo, error) {
 	}
 
 	return r0, r1
+}
+
+// Update provides a mock function with given fields: _a0
+func (_m *TodoRepository) Update(_a0 model.Todo) error {
+	ret := _m.Called(_a0)
+
+	var r0 error
+	if rf, ok := ret.Get(0).(func(model.Todo) error); ok {
+		r0 = rf(_a0)
+	} else {
+		r0 = ret.Error(0)
+	}
+
+	return r0
 }
